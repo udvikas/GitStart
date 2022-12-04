@@ -57,14 +57,14 @@
 
     // QUERYSELECTOR
 
-const header = document.querySelector('#main-header');
-header.style.borderBottom = '3px solid blue';
+// const header = document.querySelector('#main-header');
+// header.style.borderBottom = '3px solid blue';
 
-const input = document.querySelector('input');
-input.value = 'Gracious';
+// const input = document.querySelector('input');
+// input.value = 'Gracious';
 
-const submit = document.querySelector('input[type="submit"]');
-submit.value = 'send';
+// const submit = document.querySelector('input[type="submit"]');
+// submit.value = 'send';
 
 // const items = document.querySelector('.list-group-item');
 // items.style.color  = 'green';
@@ -86,13 +86,97 @@ submit.value = 'send';
 // const liItems = document.querySelectorAll('li:nth-child(odd)');
 // liItems.style.backgroundColor = 'green';
 
-const titles = document.querySelectorAll('.title');
-console.log(titles);
-titles[0].textContent = 'Hello';
-//Choose all the odd elements and make their background green using QuerySelectorALL﻿
-const odd = document.querySelectorAll('li:nth-child(odd)');
-const even = document.querySelectorAll('li:nth-child(even)');
-        for (let i = 0; i < odd.length; i++) {
-            odd[i].style.backgroundColor = 'green';
-            even[i].style.backgroundColor = '#ccc';  
-        }
+// const titles = document.querySelectorAll('.title');
+// console.log(titles);
+// titles[0].textContent = 'Hello';
+// //Choose all the odd elements and make their background green using QuerySelectorALL﻿
+// const odd = document.querySelectorAll('li:nth-child(odd)');
+// const even = document.querySelectorAll('li:nth-child(even)');
+//         for (let i = 0; i < odd.length; i++) {
+//             odd[i].style.backgroundColor = 'green';
+//             even[i].style.backgroundColor = '#ccc';  
+//         }
+
+// TRAVERSING THE DOM
+// parentNode
+const itemList = document.querySelector("#items");
+// console.log(itemList.parentNode);
+// itemList.parentNode.style.backgroundColor = '#f4f4f4';
+// console.log(itemList.parentNode.parentNode.parentNode);
+
+//parentElement
+// console.log(itemList.parentElement);
+// itemList.parentElement.style.backgroundColor = '#f4f4f4';
+// console.log(itemList.parentElement.parentElement.parentElement);
+
+//childNodes
+// console.log(itemList.childNodes);
+
+// console.log(itemList.children);
+// console.log(itemList.children[1]);
+// itemList.children[1].style.backgroundColor = 'yellow';
+
+// firstChild
+// console.log(itemList.firstChild);
+
+// firstElementChild
+// console.log(itemList.firstElementChild);
+// itemList.firstElementChild.style.color= 'magenta';
+
+//lastElementChild
+// console.log(itemList.lastElementChild);
+// itemList.lastElementChild.textContent = 'Welcome back';
+
+// nextSibling
+// console.log(itemList.nextSibling);
+
+//nextElementSibling
+// console.log(itemList.nextElementSibling);
+
+// previousSibling
+// console.log(itemList.previousSibling);
+
+// previousElementSibling
+// console.log(itemList.previousElementSibling);
+// itemList.previousElementSibling.style.color = 'brown';
+
+//  createElement
+const newDiv = document.createElement('div');
+
+// add className
+newDiv.className = 'Hello1';
+
+//add ID
+newDiv.id = 'Hello2';
+
+// add attribute
+newDiv.setAttribute('title', 'Hello Div');
+
+// create a text inside the div (TextNode)
+const newDivText = document.createTextNode('Hello');
+
+// add text inside the div
+newDiv.appendChild(newDivText);
+
+// add inside the DOM(index.html)
+const container = document.querySelector('header .container');
+const h1 = document.querySelector('header h1');
+
+container.insertBefore(newDiv, h1);
+
+newDiv.style.fontSize = '30px';
+newDiv.style.color = 'Orange';
+
+const newListItems = document.createElement('li');
+
+newListItems.className = 'list-group-item'
+
+const liNew = document.createTextNode('Hello')
+newListItems.appendChild(liNew);
+
+const ulList = document.querySelector('#items');
+const liList = document.querySelector('.list-group-item:nth-child(1)');
+
+ulList.insertBefore(newListItems, liList);
+newListItems.style.color = 'red';
+console.log(newListItems);
