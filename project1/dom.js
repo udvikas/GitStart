@@ -28,15 +28,29 @@ const header = document.getElementById("main-header");
 header.style.borderBottom = 'solid 3px red';
 
 // getElementsByClassName
-const items = document.getElementsByClassName('list-group-item');
-console.log(items);
-// items[1].textContent = 'HELLO ITEM 2';
-items[1].style.fontWeight = 'bold';
-items[1].style.backgroundColor = 'cyan';
-// items.style.backgroundColor = 'gray' : wrong way.
-for (let i = 0; i < items.length; i++) {
-    items[i].style.backgroundColor = '#f4f4f4';
-    items[i].style.color = 'black';
-    items[i].style.fontWeight = 'bold';
+// const items = document.getElementsByClassName('list-group-item');
+// console.log(items);
+// // items[1].textContent = 'HELLO ITEM 2';
+// items[1].style.fontWeight = 'bold';
+// items[1].style.backgroundColor = 'cyan';
+// // items.style.backgroundColor = 'gray' : wrong way.
+// for (let i = 0; i < items.length; i++) {
+//     items[i].style.backgroundColor = '#f4f4f4';
+//     items[i].style.color = 'black';
+//     items[i].style.fontWeight = 'bold';
+// }
+// items[2].style.backgroundColor = 'green';
+
+// GETELEMENTBYTAGNAME
+const li = document.getElementsByTagName('li');
+console.log(li);
+li[1].textContent = 'Welcome to list item 2';
+li[1].style.fontWeight = 'bold';
+li[1].style.backgroundColor = 'cyan';
+// li.style.backgroundColor = 'gray' 
+for (let i = 0; i < li.length; i++) {
+    li[i].style.backgroundColor = 'purple';
+    li[i].style.color = 'black';
+    li[i].style.fontWeight = 'bold';
 }
-items[2].style.backgroundColor = 'green';
+li[2].style.backgroundColor = 'green';
