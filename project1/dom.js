@@ -30,11 +30,13 @@ header.style.borderBottom = 'solid 3px red';
 // getElementsByClassName
 const items = document.getElementsByClassName('list-group-item');
 console.log(items);
-items[1].textContent = 'HELLO ITEM 2';
+// items[1].textContent = 'HELLO ITEM 2';
 items[1].style.fontWeight = 'bold';
 items[1].style.backgroundColor = 'cyan';
 // items.style.backgroundColor = 'gray' : wrong way.
 for (let i = 0; i < items.length; i++) {
     items[i].style.backgroundColor = '#f4f4f4';
-    items[i].style.color = 'brown';
+    items[i].style.color = 'black';
+    items[i].style.fontWeight = 'bold';
 }
+items[2].style.backgroundColor = 'green';
