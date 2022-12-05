@@ -171,12 +171,12 @@ const newListItems = document.createElement('li');
 
 newListItems.className = 'list-group-item'
 
-const liNew = document.createTextNode('Hello')
+const liNew = document.createTextNode('Item 0')
 newListItems.appendChild(liNew);
 
 const ulList = document.querySelector('#items');
 const liList = document.querySelector('.list-group-item:nth-child(1)');
 
 ulList.insertBefore(newListItems, liList);
-newListItems.style.color = 'red';
+// newListItems.style.color = 'red';
 console.log(newListItems);
