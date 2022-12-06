@@ -96,6 +96,16 @@ function dataToLocalStorage(event) {
 
     localStorage.setItem('Name', name);
     localStorage.setItem('Email', email);
+
+    const myObj = {
+        Name: name,
+        Email: email
+    };
+    const myObj_serialized = JSON.stringify(myObj);
+    localStorage.setItem("Userdetails", myObj_serialized);
+    // console.log(localStorage);
+    
+    const myObj_Deserialized =   JSON.parse(localStorage.getItem("myObj"));
 }
 // localStorage.setItem('name', 'harry');
 // console.log(localStorage.getItem('name'));
