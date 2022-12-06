@@ -80,7 +80,7 @@ function onsubmit(e) {
         const li = document.createElement('li');
         li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`))
 
-        userList.appendChild(li).style.backgroundColor = 'cyan';
+        // userList.appendChild(li).style.backgroundColor = 'cyan';
        
     
 
@@ -102,10 +102,18 @@ function dataToLocalStorage(event) {
         Email: email
     };
     const myObj_serialized = JSON.stringify(myObj);
-    localStorage.setItem("Userdetails", myObj_serialized);
+    localStorage.setItem(myObj.Name, myObj_serialized);
     // console.log(localStorage);
     
-    const myObj_Deserialized =   JSON.parse(localStorage.getItem("myObj"));
+    const myObj_Deserialized =   JSON.parse(localStorage.getItem("myObj.Name"));
+    // console.log(myObj_Deserialized);
+    // console.log(Object.keys(myObj));
+
+    const keyArray = Object.keys(myObj);
+    keyArray.forEach(key => {
+        console.log(myObj[key]);
+    })
+     showDataOnScreen(myObj);
 }
 // localStorage.setItem('name', 'harry');
 // console.log(localStorage.getItem('name'));
@@ -119,3 +127,12 @@ function dataToLocalStorage(event) {
 // document.cookie = 'name=peter; expires=' + new Date(9999, 0, 1).toUTCString();
 // document.cookie = 'lastname= smith; expires=' + new Date(9999, 0, 1).toUTCString();
 // console.log(document.cookie);
+
+// const arr = ["Name", "Email"];
+// localStorage.setItem("myarray", JSON.stringify(arr));
+// console.log(localStorage);
+function showDataOnScreen(user) {
+    const parentNode = document.getElementById("users");
+    const childNode = `<li> ${user.Name} - ${user.Email}</li>`;
+    parentNode.innerHTML = parentNode.innerHTML + childNode; 
+}
