@@ -64,12 +64,12 @@ const myform = document.querySelector('#my-form')
 const nameInput = document.querySelector('#name')
 const emailInput = document.querySelector('#email')
 const msg = document.querySelector('.msg')
-const userList = document.querySelector('#users')
+const userList = document.querySelector('#userDetails')
 const btn = document.querySelector('.btn');
 
 myform.addEventListener('submit', onsubmit);
 function onsubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     // console.log(nameInput.value);
     if(nameInput.value === '' || emailInput.value === '') {
         // alert('Please fill the required field');
@@ -94,16 +94,16 @@ function dataToLocalStorage(event) {
     const name = event.target.userName.value;
     const email = event.target.emailID.value;
 
-    localStorage.setItem('Name', name);
-    localStorage.setItem('Email', email);
+    // localStorage.setItem('Name', name);
+    // localStorage.setItem('Email', email);
 
     const myObj = {
         Name: name,
         Email: email
     };
     const myObj_serialized = JSON.stringify(myObj);
-    localStorage.setItem(myObj.Name, myObj_serialized);
-    // console.log(localStorage);
+    localStorage.setItem(myObj.Email, myObj_serialized);
+    showDataOnScreen(myObj);
     
     const myObj_Deserialized =   JSON.parse(localStorage.getItem("myObj.Name"));
     // console.log(myObj_Deserialized);
@@ -113,8 +113,19 @@ function dataToLocalStorage(event) {
     keyArray.forEach(key => {
         console.log(myObj[key]);
     })
-     showDataOnScreen(myObj);
+    
 }
+window.addEventListener("DOMContentLoaded", () => {
+    const localStorageObj = localStorage;
+    const localstoragekeys  = Object.keys(localStorageObj)
+
+    for(var i =0; i< localstoragekeys.length; i++){
+        const key = localstoragekeys[i]
+        const userDetailsString = localStorageObj[key];
+        const userDetailsObj = JSON.parse(userDetailsString);
+        showDataOnScreen(userDetailsObj)
+    }
+})
 // localStorage.setItem('name', 'harry');
 // console.log(localStorage.getItem('name'));
 // localStorage.removeItem('name');
@@ -132,7 +143,37 @@ function dataToLocalStorage(event) {
 // localStorage.setItem("myarray", JSON.stringify(arr));
 // console.log(localStorage);
 function showDataOnScreen(user) {
-    const parentNode = document.getElementById("users");
-    const childNode = `<li> ${user.Name} - ${user.Email}</li>`;
-    parentNode.innerHTML = parentNode.innerHTML + childNode; 
+    
+    if(localStorage.getItem(user.Email) !== null) {
+        removeUserFromScreen(user.Email);
+    }
+    const parentNode = document.getElementById("userDetails");
+    const childHTML = `<li id=${user.Email}> ${user.Name} - ${user.Email}
+                       <button id="btn2" onClick=DeleteUser('${user.Email}')> Delete  </button>
+                       <button id="btn3" onClick=editUserDetails('${user.Email}','${user.Name}')> Edit </button>
+                       </li>`;
+    parentNode.innerHTML = parentNode.innerHTML + childHTML; 
+}
+
+function DeleteUser(emailID) {
+    console.log(emailID);
+    localStorage.removeItem(emailID);
+    removeUserFromScreen(emailID);
+}
+
+function editUserDetails(emailID,name) {
+
+    document.getElementById('name').value = name;
+    document.getElementById('email').value = emailID;
+
+    DeleteUser(emailID, name);
+}
+
+function removeUserFromScreen(emailID) {
+    const parentNode = document.getElementById('userDetails');
+    const childNodeToBeDeleted = document.getElementById(emailID);
+
+    if(childNodeToBeDeleted) {
+        parentNode.removeChild(childNodeToBeDeleted);
+    }
 }
