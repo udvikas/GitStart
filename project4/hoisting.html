@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+       <h1>Hello JavaScript</h1>
+    <script>
+    
+    // console.log(a); // cannot access 'a' before initialization
+    // console.log(b); // undefined
+
+
+//     let a = 10; 
+//    console.log(a);
+//     var b = 100;
+
+// console.log(a) // cannot access 'a' before initialization
+// console.log(b); // undefined
+
+// let a =5;
+// var b =6;
+
+// console.log(b); // 6
+
+// let a = 5;
+// var b = 6;
+
+// console.log(this.b); // 6
+// console.log(window.b) // 6
+// console.log(window.a) // undefined
+// console.log(this.a); // undefined
+
+// console.log(a);
+
+// var a = 5;
+
+
+
+// console.log(b)
+// let a = 6;
+// const b;
+// How to iterate through the object.
+
+const obj = {
+    key1 : 'value2',
+    key2 : 'value3',
+    key3 : 'value4'
+};
+
+// let objinKeys = Object.keys(obj);
+// // console.log(objinKeys);
+
+// let keyArray = objinKeys.forEach((key) => {
+//     console.log(obj[key]);
+// });
+console.log(Object.keys(obj));
+  Object.keys(obj).forEach((key) => {
+    console.log(obj[key]);
+});
+
+    </script>
+</body>
+</html>
