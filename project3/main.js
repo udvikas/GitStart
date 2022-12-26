@@ -115,6 +115,7 @@ function dataToLocalStorage(event) {
     })
     
 }
+
 window.addEventListener("DOMContentLoaded", () => {
     const localStorageObj = localStorage;
     const localstoragekeys  = Object.keys(localStorageObj)
