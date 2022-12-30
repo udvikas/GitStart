@@ -26,6 +26,7 @@
 
 
 
+
 const posts = [
     {title: 'Post One', body: 'This is post one'},
     {title: 'Post Two', body: 'This is post two'}
@@ -43,9 +44,9 @@ function getPosts() {
     },1000);
 }
 
-function createPost(post) {
+async function createPost(post) {
 
-    return new Promise((resolve, reject) => {
+    const createPostlocal = await new Promise((resolve, reject) => {
         setTimeout(() => {
             posts.push(post);
             const error = false;
@@ -56,7 +57,9 @@ function createPost(post) {
             }
         }, 1000)
     })
+    console.log(createPostlocal)
 }
+createPost();
 
 const user = {
     userName: 'vikas',
@@ -72,8 +75,8 @@ function updateLastActivityTime() {
     }) 
 }
 
-function deletePost() {
-    return new Promise((resolve, reject) => {
+async function deletePost() {
+    const deletePostlocal = await new Promise((resolve, reject) => {
         setTimeout(() => {
            if(posts.length > 0) {
             resolve(posts.pop());
@@ -82,4 +85,35 @@ function deletePost() {
            }
         }, 1000)
     })
+    console.log(deletePostlocal)
 }
+deletePost();
+// createPost({title: 'Post Three', body: 'this is post three'})
+// .then(getPosts).catch(err => console.log(err))
+// createPost({title: 'Post Three', body: 'this is post three'})
+// .then(() => {
+//     getPosts();
+//     deletePost().then(() => {
+//         getPosts();
+//         deletePost().then(() => {
+//             getPosts();
+//             deletePost().then(() => {
+//                 getPosts();
+//                 deletePost().then(() => {})
+//                 .catch((err) => {
+//                     console.log('Inside catch block', err)
+//                 })
+//             })
+//         })
+//     }).catch(() => {})
+// }).catch(() => {})
+
+//Promise.all
+
+function userUpdatepost() {
+    Promise.all([createPost({title: 'Post Three', body: 'this is post three'}), updateLastActivityTime()])
+    .then(([createPostresolves, updateLastActivityTimeresolve]) => {
+        console.log(updateLastActivityTimeresolve)
+    }).catch(err => console.log(err))
+}
+userUpdatepost();

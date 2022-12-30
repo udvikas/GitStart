@@ -57,25 +57,25 @@ function updateLastActivityTime() {
 //     })
 // }
 
-// createPost({title: 'Post Three', body: 'this is post three'})
-// .then(getPosts).catch(err => console.log(err))
-// createPost({title: 'Post Three', body: 'this is post three'})
-// .then(() => {
-//     getPosts();
-//     deletePost().then(() => {
-//         getPosts();
-//         deletePost().then(() => {
-//             getPosts();
-//             deletePost().then(() => {
-//                 getPosts();
-//                 deletePost().then(() => {})
-//                 .catch((err) => {
-//                     console.log('Inside catch block', err)
-//                 })
-//             })
-//         })
-//     }).catch(() => {})
-// }).catch(() => {})
+createPost({title: 'Post Three', body: 'this is post three'})
+.then(getPosts).catch(err => console.log(err))
+createPost({title: 'Post Three', body: 'this is post three'})
+.then(() => {
+    getPosts();
+    deletePost().then(() => {
+        getPosts();
+        deletePost().then(() => {
+            getPosts();
+            deletePost().then(() => {
+                getPosts();
+                deletePost().then(() => {})
+                .catch((err) => {
+                    console.log('Inside catch block', err)
+                })
+            })
+        })
+    }).catch(() => {})
+}).catch(() => {})
 
 //Promise.all
 
