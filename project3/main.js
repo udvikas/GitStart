@@ -110,6 +110,8 @@ function dataToLocalStorage(event) {
         document.body.innerHTML = document.body.innerHTML + '<h3>Something went wrong</h3>';
         console.log(err)
     })
+
+    
     // const myObj_serialized = JSON.stringify(myObj);
     // localStorage.setItem(myObj.Email, myObj_serialized);
     // showDataOnScreen(myObj);
@@ -168,17 +170,21 @@ function showDataOnScreen(user) {
         removeUserFromScreen(user.Email);
     }
     const parentNode = document.getElementById("userDetails");
-    const childHTML = `<li id=${user.Email}> ${user.Name} - ${user.Email}
-                       <button id="btn2" onClick=DeleteUser('${user.Email}')> Delete  </button>
-                       <button id="btn3" onClick=editUserDetails('${user.Email}','${user.Name}')> Edit </button>
+    const childHTML = `<li id=${user._id}> ${user.Name} - ${user.Email}
+                       <button id="btn2" onClick=DeleteUser('${user._id}')> Delete  </button>
+                       <button id="btn3" onClick=editUserDetails('${user._id}','${user.Name}')> Edit </button>
                        </li>`;
     parentNode.innerHTML = parentNode.innerHTML + childHTML; 
 }
 
-function DeleteUser(emailID) {
-    console.log(emailID);
-    localStorage.removeItem(emailID);
-    removeUserFromScreen(emailID);
+function DeleteUser(userId) {
+    axios.delete(`https://crudcrud.com/api/24ec6753cda84be89e603b921b594c65/appointmentData/${userId}`)
+    .then((response) => {
+    removeUserFromScreen(userId);
+    }).catch((err) => console.log(err));
+    // console.log(emailID);
+    // localStorage.removeItem(emailID);
+    // removeUserFromScreen(emailID);
 }
 
 function editUserDetails(emailID,name) {
@@ -189,9 +195,9 @@ function editUserDetails(emailID,name) {
     DeleteUser(emailID, name);
 }
 
-function removeUserFromScreen(emailID) {
+function removeUserFromScreen(userId) {
     const parentNode = document.getElementById('userDetails');
-    const childNodeToBeDeleted = document.getElementById(emailID);
+    const childNodeToBeDeleted = document.getElementById(userId);
 
     if(childNodeToBeDeleted) {
         parentNode.removeChild(childNodeToBeDeleted);
