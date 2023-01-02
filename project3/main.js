@@ -101,8 +101,17 @@ function dataToLocalStorage(event) {
         Name: name,
         Email: email
     };
-    const myObj_serialized = JSON.stringify(myObj);
-    localStorage.setItem(myObj.Email, myObj_serialized);
+    axios.post("https://crudcrud.com/api/24ec6753cda84be89e603b921b594c65/appointmentData", myObj)
+    .then((response) => {
+        showDataOnScreen(response.data);
+        console.log(response);
+    })
+    .catch((err) => {
+        document.body.innerHTML = document.body.innerHTML + '<h3>Something went wrong</h3>';
+        console.log(err)
+    })
+    // const myObj_serialized = JSON.stringify(myObj);
+    // localStorage.setItem(myObj.Email, myObj_serialized);
     showDataOnScreen(myObj);
     
     const myObj_Deserialized =   JSON.parse(localStorage.getItem("myObj.Name"));

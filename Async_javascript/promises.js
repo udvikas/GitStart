@@ -57,32 +57,32 @@ function updateLastActivityTime() {
 //     })
 // }
 
-createPost({title: 'Post Three', body: 'this is post three'})
-.then(getPosts).catch(err => console.log(err))
-createPost({title: 'Post Three', body: 'this is post three'})
-.then(() => {
-    getPosts();
-    deletePost().then(() => {
-        getPosts();
-        deletePost().then(() => {
-            getPosts();
-            deletePost().then(() => {
-                getPosts();
-                deletePost().then(() => {})
-                .catch((err) => {
-                    console.log('Inside catch block', err)
-                })
-            })
-        })
-    }).catch(() => {})
-}).catch(() => {})
+// createPost({title: 'Post Three', body: 'this is post three'})
+// .then(getPosts).catch(err => console.log(err))
+// createPost({title: 'Post Three', body: 'this is post three'})
+// .then(() => {
+//     getPosts();
+//     deletePost().then(() => {
+//         getPosts();
+//         deletePost().then(() => {
+//             getPosts();
+//             deletePost().then(() => {
+//                 getPosts();
+//                 deletePost().then(() => {})
+//                 .catch((err) => {
+//                     console.log('Inside catch block', err)
+//                 })
+//             })
+//         })
+//     }).catch(() => {})
+// }).catch(() => {})
 
 //Promise.all
 
 function userUpdatepost() {
     Promise.all([createPost({title: 'Post Three', body: 'this is post three'}), updateLastActivityTime()])
     .then(([createPostresolves, updateLastActivityTimeresolve]) => {
-        console.log(updateLastActivityTimeresolve)
+        console.log('Last activity time is',updateLastActivityTimeresolve)
     }).catch(err => console.log(err))
 }
 userUpdatepost();
