@@ -104,7 +104,7 @@ function dataToLocalStorage(event) {
     axios.post("https://crudcrud.com/api/24ec6753cda84be89e603b921b594c65/appointmentData", myObj)
     .then((response) => {
         showDataOnScreen(response.data);
-        console.log(response);
+        // console.log(response);
     })
     .catch((err) => {
         document.body.innerHTML = document.body.innerHTML + '<h3>Something went wrong</h3>';
@@ -112,7 +112,7 @@ function dataToLocalStorage(event) {
     })
     // const myObj_serialized = JSON.stringify(myObj);
     // localStorage.setItem(myObj.Email, myObj_serialized);
-    showDataOnScreen(myObj);
+    // showDataOnScreen(myObj);
     
     const myObj_Deserialized =   JSON.parse(localStorage.getItem("myObj.Name"));
     // console.log(myObj_Deserialized);
@@ -126,15 +126,25 @@ function dataToLocalStorage(event) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-    const localStorageObj = localStorage;
-    const localstoragekeys  = Object.keys(localStorageObj)
+    axios.get('https://crudcrud.com/api/24ec6753cda84be89e603b921b594c65/appointmentData')
+    .then((response) => {
+        // console.log(response);
+        for(let i = 0; i<response.data.length; i++) {
+            showDataOnScreen(response.data[i]);
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+    // const localStorageObj = localStorage;
+    // const localstoragekeys  = Object.keys(localStorageObj)
 
-    for(var i =0; i< localstoragekeys.length; i++){
-        const key = localstoragekeys[i]
-        const userDetailsString = localStorageObj[key];
-        const userDetailsObj = JSON.parse(userDetailsString);
-        showDataOnScreen(userDetailsObj)
-    }
+    // for(var i =0; i< localstoragekeys.length; i++){
+    //     const key = localstoragekeys[i]
+    //     const userDetailsString = localStorageObj[key];
+    //     const userDetailsObj = JSON.parse(userDetailsString);
+    //     showDataOnScreen(userDetailsObj)
+    // }
 })
 // localStorage.setItem('name', 'harry');
 // console.log(localStorage.getItem('name'));
