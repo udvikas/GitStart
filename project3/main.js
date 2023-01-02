@@ -172,7 +172,7 @@ function showDataOnScreen(user) {
     const parentNode = document.getElementById("userDetails");
     const childHTML = `<li id=${user._id}> ${user.Name} - ${user.Email}
                        <button id="btn2" onClick=DeleteUser('${user._id}')> Delete  </button>
-                       <button id="btn3" onClick=editUserDetails('${user._id}','${user.Name}')> Edit </button>
+                       <button id="btn3" onClick=editUserDetails('${user.Email}','${user.Name}','${user._id}')> Edit </button>
                        </li>`;
     parentNode.innerHTML = parentNode.innerHTML + childHTML; 
 }
@@ -187,12 +187,12 @@ function DeleteUser(userId) {
     // removeUserFromScreen(emailID);
 }
 
-function editUserDetails(emailID,name) {
+function editUserDetails(emailID,name,userId) {
 
     document.getElementById('name').value = name;
     document.getElementById('email').value = emailID;
 
-    DeleteUser(emailID, name);
+    DeleteUser(userId);
 }
 
 function removeUserFromScreen(userId) {
