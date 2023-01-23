@@ -67,6 +67,7 @@ function removeItem(e) {
     if(e.target.classList.contains('delete')) {
         if (confirm('Are you sure?')) {
             const li = e.target.parentElement
+            console.log(li);
             itemList.removeChild(li);
         }
     }

@@ -2,7 +2,7 @@
 //what is callback function in javascript
 // setTimeout(function() {
 //     console.log('Timer');
-// },5000);
+// },2000);
 // function x(y) {
 //     console.log('x');
 //     y();
@@ -11,7 +11,8 @@
 //     console.log('y');
 // })
 //javascript is synchronous and single threaded language
-
+//JS is a single threaded which means only one statement is executed at a time.
+// Single threaded means it has only one call stack. 
 //Blocking the main thread
 
 //Power of callbacks
@@ -63,16 +64,16 @@
 // })
 
 // 3)
-setTimeout(() => console.log('timer1 expired'), 1000)
-setTimeout(() => console.log('timer2 expired'), 0)
+// setTimeout(() => console.log('timer1 expired'), 1000)
+// setTimeout(() => console.log('timer2 expired'), 0)
 
-function x(y) {
-console.log('inside x');
-y();
-}
+// function x(y) {
+// console.log('inside x');
+// y();
+// }
 
-x(function y(){
-setTimeout(() => console.log('inside y'), 0)
-})
+// x(function y(){
+// setTimeout(() => console.log('inside y'), 0)
+// })
 
 

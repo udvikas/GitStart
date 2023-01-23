@@ -69,22 +69,15 @@ const btn = document.querySelector('.btn');
 
 myform.addEventListener('submit', onsubmit);
 function onsubmit(e) {
-    // e.preventDefault();
-    // console.log(nameInput.value);
+   
     if(nameInput.value === '' || emailInput.value === '') {
-        // alert('Please fill the required field');
         msg.classList.add('error')
         msg.innerHTML = 'Please Enter all fields';
-        // setTimeout(() => msg.remove(), 3000);
     } else {
         const li = document.createElement('li');
         li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`))
+        console.log(li);
 
-        // userList.appendChild(li).style.backgroundColor = 'cyan';
-       
-    
-
-        //clear fields
         nameInput.value = '';
         emailInput.value = '';
     }
@@ -94,59 +87,61 @@ function dataToLocalStorage(event) {
     const name = event.target.userName.value;
     const email = event.target.emailID.value;
 
-    // localStorage.setItem('Name', name);
-    // localStorage.setItem('Email', email);
+    localStorage.setItem('Name', name);
+    localStorage.setItem('Email', email);
 
     const myObj = {
         Name: name,
         Email: email
     };
-    axios.post("https://crudcrud.com/api/24ec6753cda84be89e603b921b594c65/appointmentData", myObj)
-    .then((response) => {
-        showDataOnScreen(response.data);
-        // console.log(response);
-    })
-    .catch((err) => {
-        document.body.innerHTML = document.body.innerHTML + '<h3>Something went wrong</h3>';
-        console.log(err)
-    })
+    // axios.post("https://crudcrud.com/api/bf272d6fea434a8d9584a83c63ba7c86/crudData",myObj)
+    // .then((response) => {
+    //     showDataOnScreen(response.data);
+    //     // console.log(response);
+    // })
+    // .catch((err) => {
+    //     document.body.innerHTML = document.body.innerHTML + '<h3>Something went wrong</h3>';
+    //     console.log(err)
+    // })
 
     
-    // const myObj_serialized = JSON.stringify(myObj);
-    // localStorage.setItem(myObj.Email, myObj_serialized);
-    // showDataOnScreen(myObj);
+    const myObj_serialized = JSON.stringify(myObj);
+    localStorage.setItem(myObj.Email, myObj_serialized);
+    showDataOnScreen(myObj);
     
-    const myObj_Deserialized =   JSON.parse(localStorage.getItem("myObj.Name"));
-    // console.log(myObj_Deserialized);
-    // console.log(Object.keys(myObj));
+    const myObj_Deserialized =  JSON.parse(localStorage.getItem("myObj.Name"));
+    console.log(myObj_Deserialized);
+    console.log(Object.keys(myObj));
 
     const keyArray = Object.keys(myObj);
     keyArray.forEach(key => {
         console.log(myObj[key]);
     })
-    
+    console.log(keyArray)
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-    axios.get('https://crudcrud.com/api/24ec6753cda84be89e603b921b594c65/appointmentData')
-    .then((response) => {
-        // console.log(response);
-        for(let i = 0; i<response.data.length; i++) {
-            showDataOnScreen(response.data[i]);
-        }
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-    // const localStorageObj = localStorage;
-    // const localstoragekeys  = Object.keys(localStorageObj)
+    
+    // axios.get('https://crudcrud.com/api/bf272d6fea434a8d9584a83c63ba7c86/crudData')
+    // .then((response) => {
+    //     // console.log(response);
+    //     for(let i = 0; i<response.data.length; i++) {
+    //         showDataOnScreen(response.data[i]);
+    //     }
+    // })
+    // .catch((err) => {
+    //     console.log(err);
+    // })
 
-    // for(var i =0; i< localstoragekeys.length; i++){
-    //     const key = localstoragekeys[i]
-    //     const userDetailsString = localStorageObj[key];
-    //     const userDetailsObj = JSON.parse(userDetailsString);
-    //     showDataOnScreen(userDetailsObj)
-    // }
+    const localStorageObj = localStorage;
+    const localstoragekeys  = Object.keys(localStorageObj)
+
+    for(var i = 0; i < localstoragekeys.length; i++){
+        const key = localstoragekeys[i]
+        const userDetailsString = localStorageObj[key];
+        const userDetailsObj = JSON.parse(userDetailsString);
+        showDataOnScreen(userDetailsObj)
+    }
 })
 // localStorage.setItem('name', 'harry');
 // console.log(localStorage.getItem('name'));
@@ -178,13 +173,13 @@ function showDataOnScreen(user) {
 }
 
 function DeleteUser(userId) {
-    axios.delete(`https://crudcrud.com/api/24ec6753cda84be89e603b921b594c65/appointmentData/${userId}`)
-    .then((response) => {
-    removeUserFromScreen(userId);
-    }).catch((err) => console.log(err));
-    // console.log(emailID);
-    // localStorage.removeItem(emailID);
-    // removeUserFromScreen(emailID);
+    // axios.delete(`https://crudcrud.com/api/bf272d6fea434a8d9584a83c63ba7c86/crudData/${userId}`)
+    // .then((response) => {
+    // removeUserFromScreen(userId);
+    // }).catch((err) => console.log(err));
+    console.log(emailID);
+    localStorage.removeItem(emailID);
+    removeUserFromScreen(emailID);
 }
 
 function editUserDetails(emailID,name,userId) {

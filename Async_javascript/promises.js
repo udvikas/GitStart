@@ -39,8 +39,7 @@ function updateLastActivityTime() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             user.lastActivityTime = new Date().getTime();
-                resolve(user.lastActivityTime)
-             
+                resolve(user.lastActivityTime)   
         }, 1000)
     }) 
 }
@@ -59,6 +58,7 @@ function updateLastActivityTime() {
 
 // createPost({title: 'Post Three', body: 'this is post three'})
 // .then(getPosts).catch(err => console.log(err))
+
 // createPost({title: 'Post Three', body: 'this is post three'})
 // .then(() => {
 //     getPosts();
