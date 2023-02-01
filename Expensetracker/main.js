@@ -62,9 +62,9 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 function showDataOnScreen(user) {
-    // if(JSON.parse(localStorage.getItem(user.Desc) !== null)) {
-    //     removeUserFromScreen(user.Desc);
-    // }
+    if(JSON.parse(localStorage.getItem(user.Desc) !== null)) {
+        removeUserFromScreen(user.Desc);
+    }
     const parentNode = document.getElementsByClassName('list');
     const childHTML = `<li id=${user.Expense} ${user.Desc} ${user.Category}>
     <button id="btn2" onClick=DeleteUser('${user.Expense}')> Delete </button>
